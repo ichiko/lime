@@ -75,6 +75,18 @@ Color for the current git status, between `0` and `255`. Also you can set this
 with colors names. The default value is `109` if you have 256 colors support,
 `cyan` otherwise.
 
+### `LIME_ST_NORMAL_COLOR`
+
+Color for the previous command's status, between `0` and `255`. Also you can set this
+with colors names. The default value is `143` if you have 256 colors support,
+`green` otherwise.
+
+### `LIME_ST_ERROR_COLOR`
+
+Color for the previous command's status if error, between `0` and `255`. Also you can set this
+with colors names. The default value is `160` if you have 256 colors support,
+`red` otherwise.
+
 ## License
 
 Copyright © 2014-2016 Chayoung You. See [LICENSE.txt](LICENSE.txt) for details.

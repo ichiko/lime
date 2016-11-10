@@ -96,7 +96,20 @@ prompt_lime_first_command() {
   print -rn ${1[(wr)^(*=*|-*|sudo|ssh)]:gs/%/%%}
 }
 
+prompt_lime_result_state() {
+  local state="$?"
+  local error_color="${LIME_ST_ERROR_COLOR:-$prompt_lime_default_status_error_color}"
+  local normal_color="${LIME_ST_NORMAL_COLOR:-$prompt_lime_default_status_normal_color}"
+  if [[ "${state}" -eq "0" ]]; then
+    echo -n "%F{${normal_color}}[${state}]%f"
+  else
+    echo -n "%F{${error_color}}[${state}]%f"
+  fi
+}
+
 prompt_lime_render() {
+  prompt_lime_result_state
+  echo -n ' '
   echo -n "${prompt_lime_rendered_user}"
   echo -n ' '
   prompt_lime_dir
@@ -183,10 +196,14 @@ prompt_lime_setup() {
     prompt_lime_default_user_color=109
     prompt_lime_default_dir_color=143
     prompt_lime_default_git_color=109
+    prompt_lime_default_status_normal_color=143
+    prompt_lime_default_status_error_color=160
   else
     prompt_lime_default_user_color=cyan
     prompt_lime_default_dir_color=green
     prompt_lime_default_git_color=cyan
+    prompt_lime_default_status_normal_color=green
+    prompt_lime_default_status_error_color=red
   fi
 
   prompt_lime_rendered_user="$(prompt_lime_user)"
